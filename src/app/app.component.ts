@@ -27,14 +27,12 @@ export class AppComponent implements OnInit {
   username: string = '';
 
   ngOnInit(): void {
-    console.log('AppComponent inicializado'); // Registro de inicialización
     this.username = sessionStorage.getItem('username') || ''; // Recuperar el nombre de usuario
     console.log('Nombre de usuario recuperado del sessionStorage:', this.username); // Registro de nombre de usuario
   }
   constructor(private loginService: LoginService) {}
   cerrar() {
     sessionStorage.clear();
-    this.username=""
   }
   verificar() {
     this.role = this.loginService.showRole();

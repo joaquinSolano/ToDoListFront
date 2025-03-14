@@ -78,7 +78,7 @@ export class NotespageRegistrarComponent implements OnInit{
         duration: 3000,
       });
     } else {
-      this.snackBar.open('Por favor, ingresa al menos 8 caracteres en nombre del rol.', 'Cerrar', {
+      this.snackBar.open('Hubo un error', 'Cerrar', {
         duration: 5000,
       });
     } 

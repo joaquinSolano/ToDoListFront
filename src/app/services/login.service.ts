@@ -11,7 +11,7 @@ export class LoginService {
 login(request: JwtRequest) {
   return this.http.post('http://localhost:8081/login', request).pipe(
     tap((data: any) => {
-      sessionStorage.setItem('username', request.username); // Almacenar el nombre de usuario
+      sessionStorage.setItem('username', request.username);
       sessionStorage.setItem('token', data.jwttoken);
     })
   );

@@ -17,12 +17,12 @@
             Campo obligatorio
         </mat-error>
         <mat-error *ngIf="form.get('ndescription')?.hasError('minlength')">
-          Ingresar nombre con al menos 3 caracteres
+          Ingresa al menos 10 caracteres en la descripcion
         </mat-error>
         </mat-form-field>
         <br />  
           <mat-form-field>
-            <mat-label>User</mat-label>
+            <mat-label>Usuario</mat-label>
             <mat-select formControlName="nuser">
               @for (user of listausers; track user) {
               <mat-option [value]="user.id">{{ user.username }}</mat-option>

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit{
     private snackBar: MatSnackBar
   ) {}
   username: string = '';
+  role:string='';
   password: string = '';
   mensaje: string = '';
   ngOnInit(): void {}
@@ -32,7 +33,10 @@ export class LoginComponent implements OnInit{
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
         sessionStorage.setItem('username', this.username); // Almacenar el nombre de usuario
+        sessionStorage.setItem('role', this.role); // Almacenar el nombre de usuario
         console.log('Nombre de usuario configurado en sessionStorage:', this.username); // Registro del nombre de usuario
+        console.log('Nombre de usuario configurado en sessionStorage:', this.role); // Registro del nombre de usuario
+
         this.router.navigate(['notes']);
       },
       (error) => {

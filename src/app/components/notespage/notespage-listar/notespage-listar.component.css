@@ -9,4 +9,7 @@
     max-width: 100%; /* Aumenta el ancho máximo de la tabla */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+  body{
+    background-color: #faf9f8;
+
+  }
