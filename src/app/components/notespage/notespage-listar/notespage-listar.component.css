@@ -1,0 +1,12 @@
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 50px; /* Ajusta el margen superior según tus necesidades */
+  }
+  
+  .table-container {
+    width: 70%; /* Ajusta el ancho total de la tabla */
+    max-width: 100%; /* Aumenta el ancho máximo de la tabla */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
