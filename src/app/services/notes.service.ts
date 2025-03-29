@@ -8,7 +8,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class NotesService {
-  private url=`${base_url}/notes`
+  private url=`https://todolist-backend-v32k.onrender.com/notes`
   private listacambio=new Subject<Notes[]>()
   constructor(private http:HttpClient) {}
   list(){

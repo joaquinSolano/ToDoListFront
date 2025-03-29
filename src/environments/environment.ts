@@ -1,4 +1,4 @@
 export const environment={
-    production:true,
+    production:false,
     base:'https://todolist-backend-v32k.onrender.com'
 }
