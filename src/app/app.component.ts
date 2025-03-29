@@ -21,20 +21,18 @@ import { MatMenuModule } from '@angular/material/menu';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'ToDoListFront';
   role: string = '';
   username: string = '';
-
-  ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || ''; // Recuperar el nombre de usuario
-    console.log('Nombre de usuario recuperado del sessionStorage:', this.username); // Registro de nombre de usuario
-  }
+  
   constructor(private loginService: LoginService) {}
   cerrar() {
+    this.username=""
     sessionStorage.clear();
   }
   verificar() {
+    this.username = sessionStorage.getItem('username') || ''; // Recuperar el nombre de usuario
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }

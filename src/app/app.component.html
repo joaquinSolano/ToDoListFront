@@ -1,14 +1,14 @@
 <mat-toolbar class="custom-toolbar" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="verificar()">
   <div fxLayout="row" fxLayoutGap="10px">
     <button class="special-buttons" mat-button [routerLink]="['/notes']" style="color: white">
-      <mat-icon>home</mat-icon>Home
+      <mat-icon>notes</mat-icon>Notas
     </button>
-    <button class="special-buttons" mat-button [routerLink]="['/insertnotes']" style="color: white" *ngIf="isAdmin() || isUser()">
+    <button class="special-buttons" mat-button [routerLink]="['/notes/nuevo']" style="color: white" *ngIf="isAdmin() || isUser()">
       <mat-icon>assignment_ind</mat-icon>
       Asignar tareas
     </button>
     <button mat-button [matMenuTriggerFor]="menuSalir" style="color: white">
-      <mat-icon>person</mat-icon>{{ username }} <!-- Mostrar el nombre de usuario -->
+      <mat-icon>person</mat-icon>{{ username }}
     </button>
   </div>
 </mat-toolbar>

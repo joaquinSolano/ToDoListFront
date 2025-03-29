@@ -1,15 +1,54 @@
+/* Contenedor principal */
 .outer-container {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    margin-top: 50px; /* Ajusta el margen superior según tus necesidades */
-  }
-  
-  .table-container {
-    width: 70%; /* Ajusta el ancho total de la tabla */
-    max-width: 100%; /* Aumenta el ancho máximo de la tabla */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  body{
-    background-color: #faf9f8;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
 
-  }
+/* Contenedor de los widgets */
+.widget-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* Estilo individual de cada widget */
+.note-widget {
+  max-width: 400px;
+}
+
+/* Estilo de las tarjetas */
+mat-card {
+  background-color: #FFFBCC;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin: 10px;
+}
+
+/* Contenido dentro de las tarjetas */
+.card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilo del botón eliminar */
+.delete-button {
+  margin-left: auto;
+}
+
+/* Estilo general de botones */
+button {
+  border: none; /* Sin bordes */
+  box-shadow: none; /* Sin sombra */
+  outline: none; /* Sin contorno */
+  background: none; /* Sin fondo */
+  padding: 0; /* Sin espacio extra */
+}
+.buttondelete{
+  color: #FF4D4D;
+}
+.buttonedit{
+  color: #4CAF50
+}

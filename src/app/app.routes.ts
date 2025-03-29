@@ -4,6 +4,7 @@ import { NotespageComponent } from './components/notespage/notespage.component';
 import { NotespageListarComponent } from './components/notespage/notespage-listar/notespage-listar.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { NotespageRegistrarComponent } from './components/notespage/notespage-registrar/notespage-registrar.component';
+import { CreateuserComponent } from './components/createuser/createuser.component';
 
 export const routes: Routes = [
     {
@@ -17,13 +18,15 @@ export const routes: Routes = [
     },
     {
         path:'notes',
-        component:NotespageListarComponent,
-        canActivate: [seguridadGuard],
+        component:NotespageComponent,
+            children: [
+            { path: 'nuevo', component: NotespageRegistrarComponent },
+            { path: 'ediciones/:id', component: NotespageRegistrarComponent },
+          ],
+          canActivate: [seguridadGuard],
     },
     {
-        path:'insertnotes',
-        component:NotespageRegistrarComponent,
-        canActivate:[seguridadGuard]
+        path:'newuser',
+        component:CreateuserComponent
     }
-
 ];

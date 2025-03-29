@@ -1,0 +1,30 @@
+<body>
+    <!-- Login floating box -->
+    <div class="float-box">
+      <h2>Crear usuario</h2>
+      <div class="title-container">
+        <div class="container" style="text-align: center">
+          <!-- Formulario con grupo de controles -->
+          <form [formGroup]="form" (submit)="insertar()">
+    
+            <!-- Campo de descripción -->
+            <mat-form-field class="descripcion">
+              <mat-label>username</mat-label>
+              <input matInput placeholder="Descripción" formControlName="Username">
+            </mat-form-field>
+            <br/>
+            <mat-form-field class="descripcion">
+                <mat-label>password</mat-label>
+                <input matInput placeholder="Descripción" formControlName="Password">
+              </mat-form-field>
+              <br/>
+            <!-- Botón de registrar -->
+            <button mat-flat-button color="primary" style="text-align: center;">
+              Registrar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+      

@@ -1,67 +1,48 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Notes } from '../../../models/Notes';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 import { NotesService } from '../../../services/notes.service';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../../../services/login.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-notespage-listar',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, RouterModule,MatPaginator],
+  imports: [MatCardModule, MatIcon, CommonModule, RouterLink],
   templateUrl: './notespage-listar.component.html',
-  styleUrl: './notespage-listar.component.css'
+  styleUrls: ['./notespage-listar.component.css']
 })
 export class NotespageListarComponent implements OnInit {
-  datasource: MatTableDataSource<Notes> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2','accion01']; // Cambiado a 'displayedColumns'
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  notes: Notes[] = [];
   username: string = '';
-  role:string=''
-  constructor(private Notes: NotesService,private snackBar: MatSnackBar,private login:LoginService) {}
+  role: string = '';
+
+  constructor(
+    private notesService: NotesService, // Renombrado para seguir la convención de camelCase
+    private snackBar: MatSnackBar,
+    private loginService: LoginService // Renombrado para mantener consistencia
+  ) {}
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || ''; // Recupera el nombre de usuario
-    this.role = this.login.showRole();
-  
-    switch (this.role) {
-      case 'USER':
-        this.Notes.list().subscribe(data => {
-          this.datasource = new MatTableDataSource(data.filter(note => note.user?.username === this.username)); // Compara el username con la lista recuperada
-          this.datasource.paginator = this.paginator;
-        });
-        this.Notes.getList().subscribe(data => {
-          this.datasource = new MatTableDataSource(data.filter(note => note.user?.username === this.username));
-          this.datasource.paginator = this.paginator;
-        });
-        break;
-  
-      case 'ADMIN':
-        this.Notes.list().subscribe(data => {
-          this.datasource = new MatTableDataSource(data); // Muestra todos los datos para un administrador
-          this.datasource.paginator = this.paginator;
-        });
-        this.Notes.getList().subscribe(data => {
-          this.datasource = new MatTableDataSource(data);
-          this.datasource.paginator = this.paginator;
-        });
-        break;
-  
-      default:
-        console.warn('Role not recognized: ', this.role); // Manejo de caso no previsto
-        break;
-    }
+    this.FilterRol(); // Esto cubre tanto la lista inicial como el filtrado por rol
   }
   
-  delete(id: number) {
-    this.Notes.delete(id).subscribe(
-      (data) => {
-        console.log('Respuesta de eliminación:', data);  
-        this.Notes.list().subscribe((data) => {
-          this.Notes.setList(data);
+  private FilterRol(): void {
+    this.username = sessionStorage.getItem('username') || '';
+    this.role = this.loginService.showRole();
+    // Asegúrate de que la lista solo se actualice cuando los datos estén completamente cargados
+    this.filterrolList()
+    this.filterrolGetList()
+
+  }
+  delete(id: number): void {
+    this.notesService.delete(id).subscribe(
+      () => {
+        this.notesService.list().subscribe(data => {
+          this.filterrolList()
           this.snackBar.open('Nota eliminada con éxito', 'Cerrar', {
             duration: 3000,
             horizontalPosition: 'right',
@@ -69,14 +50,47 @@ export class NotespageListarComponent implements OnInit {
           });
         });
       },
-      (error) => {
-        console.error('Error al eliminar la nota:', error);  
-        this.snackBar.open('Hubo un error al eliminar la nota ', 'Cerrar', {
+      error => {
+        console.error('Error al eliminar la nota:', error);
+        this.snackBar.open('Hubo un error al eliminar la nota', 'Cerrar', {
           duration: 3000,
           horizontalPosition: 'right',
           verticalPosition: 'top'
         });
       }
     );
+
+  }
+  private filterrolList():void{
+    this.notesService.list().subscribe(data => {
+      switch (this.role) {
+        case 'USER':
+          this.notes = data.filter(note => note.user?.username === this.username);
+          break;
+        case 'ADMIN':
+          this.notes = data; // Admin ve todo
+          break;
+        default:
+          console.warn('Rol no reconocido:', this.role);
+          this.notes = [];
+          break;
+      }
+    });
+  }
+  private filterrolGetList():void{
+    this.notesService.getList().subscribe(data => {
+      switch (this.role) {
+        case 'USER':
+          this.notes = data.filter(note => note.user?.username === this.username);
+          break;
+        case 'ADMIN':
+          this.notes = data; // Admin ve todo
+          break;
+        default:
+          console.warn('Rol no reconocido:', this.role);
+          this.notes = [];
+          break;
+      }
+    });
   }
 }

@@ -1,31 +1,28 @@
 <body>
-    <h1 style="text-align: center">Notas</h1>
-<div class="outer-container">
-  <div class="table-container">
-    <table mat-table [dataSource]="datasource" class="notas">
-      <ng-container matColumnDef="c1">
-        <th mat-header-cell *matHeaderCellDef> Descripción </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-      </ng-container>
-      <ng-container matColumnDef="c2">
-        <th mat-header-cell *matHeaderCellDef> user </th>
-        <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
-      </ng-container>
-      <ng-container matColumnDef="c3">
-        <th mat-header-cell *matHeaderCellDef> Id</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-      <ng-container matColumnDef="accion01">
-        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
-        <td mat-cell *matCellDef="let element" (click)="delete(element.id)">
-          <mat-icon  style="color:red">delete</mat-icon>
-        </td>
-      </ng-container>
-      <!-- Añade las definiciones de cabecera y fila -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  <!-- Contenedor principal -->
+  <div class="outer-container">
+    <!-- Contenedor de los widgets -->
+    <div class="widget-container">
+      <!-- Repetición dinámica de widgets -->
+      <div *ngFor="let note of notes" class="note-widget">
+        <mat-card>
+          <mat-card-header>
+            <!-- Descripción del widget -->
+            <mat-card-subtitle>{{ note.description }}</mat-card-subtitle>
+
+            <!-- Botón eliminar -->
+            <button mat-button color="warn" (click)="delete(note.id)">
+              <mat-icon class="buttondelete">delete</mat-icon>
+            </button>
+
+            <!-- Botón editar -->
+            <button mat-button [routerLink]="['ediciones', note.id]">
+              <mat-icon class="buttonedit">edit</mat-icon>
+            </button>
+          </mat-card-header>
+          <mat-card-actions></mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
-</div>
 </body>
