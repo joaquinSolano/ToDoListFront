@@ -10,7 +10,7 @@ const base_url=environment.base
   providedIn: 'root'
 })
 export class UsersService {
-  private url=`https://todolist-backend-v32k.onrender.com/users`
+  private url=`${base_url}/users`
   private listacambio=new Subject<User[]>()
   constructor(private http:HttpClient) {}
     list(){
