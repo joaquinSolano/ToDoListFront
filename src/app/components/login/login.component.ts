@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(request).subscribe(
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
-        sessionStorage.setItem('username', this.username);
-        sessionStorage.setItem('role', this.role);
         this.router.navigate(['notes']);
       },
       (error) => {

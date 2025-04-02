@@ -23,7 +23,6 @@ export const routes: Routes = [
             { path: 'nuevo', component: NotespageRegistrarComponent },
             { path: 'ediciones/:id', component: NotespageRegistrarComponent },
           ],
-          canActivate: [seguridadGuard],
     },
     {
         path:'newuser',
