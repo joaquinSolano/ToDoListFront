@@ -19,8 +19,8 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['localhost:8081'],
-          disallowedRoutes: ['http://localhost:8081/login/forget'],
+          allowedDomains: ['https://todolist-backend-v32k.onrender.com'],
+          disallowedRoutes: ['https://todolist-backend-v32k.onrender.com/login/forget'],
         },
       })
     ), provideAnimationsAsync()
