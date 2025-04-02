@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
-          allowedDomains: ['https://todolist-backend-v32k.onrender.com', 'http://localhost:8081'],
+          allowedDomains: ['todolist-backend-v32k.onrender.com', 'http://localhost:8081'],
           disallowedRoutes: ['https://todolist-backend-v32k.onrender.com/login/forget'],
         },
       })
