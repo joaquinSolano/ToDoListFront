@@ -27,6 +27,7 @@ export class NotespageListarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.username = sessionStorage.getItem('username') || '';
     this.FilterRol(); // Esto cubre tanto la lista inicial como el filtrado por rol
   }
   

@@ -14,7 +14,10 @@
             Campo obligatorio
           </mat-error>
           <mat-error *ngIf="form.get('Description')?.hasError('minlength')">
-            Ingresa al menos 10 caracteres en la descripción
+            Ingresa al menos 3 caracteres en la descripción
+          </mat-error>
+          <mat-error *ngIf="form.get('Description')?.hasError('maxlength')">
+            Solo ingresar 20 caracteres
           </mat-error>
         </mat-form-field>
 

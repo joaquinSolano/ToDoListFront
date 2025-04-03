@@ -24,6 +24,7 @@ mat-card {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   margin: 10px;
+  
 }
 
 /* Contenido dentro de las tarjetas */
@@ -51,4 +52,12 @@ button {
 }
 .buttonedit{
   color: #4CAF50
+}
+footer {
+  font-size: 13px;
+  bottom: 0;
+  margin-top: auto; /* Empuja el footer al final del contenedor */
+  padding: 20px; /* Espaciado interno */
+  text-align: center; /* Opcional: alineación del texto */
+  position: absolute;
 }
