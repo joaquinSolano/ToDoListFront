@@ -9,6 +9,7 @@
           <mat-card-header>
             <!-- Descripción del widget -->
             <mat-card-subtitle>{{ note.description }}</mat-card-subtitle>
+            <mat-card-footer>nota enviada por: {{note.user}}</mat-card-footer>
 
             <!-- Botón eliminar -->
             <button mat-button color="warn" (click)="delete(note.id)">
