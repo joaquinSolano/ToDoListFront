@@ -7,12 +7,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { getItem } from '../../../utils/storage';
 
 @Component({
   selector: 'app-notespage-listar',
   standalone: true,
-  imports: [MatCardModule, MatIcon, CommonModule, RouterLink],
+  imports: [MatCardModule, MatIcon, MatButtonModule, CommonModule, RouterLink],
   templateUrl: './notespage-listar.component.html',
   styleUrls: ['./notespage-listar.component.css']
 })
@@ -66,7 +67,7 @@ export class NotespageListarComponent implements OnInit {
   // Muestra "Enviado por" solo si la nota es de otro usuario
   // (compara sin importar mayusculas ni espacios)
   esDeOtroUsuario(note: Notes): boolean {
-    const autor = (note.user?.username || '').trim().toLowerCase();
+    const autor = (note.user.username || '').trim().toLowerCase();
     const yo = (this.username || '').trim().toLowerCase();
     return autor !== '' && autor !== yo;
   }

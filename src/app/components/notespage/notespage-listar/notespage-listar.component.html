@@ -8,7 +8,7 @@
 
         <footer *ngIf="esDeOtroUsuario(note)" class="note-author">
           <mat-icon>send</mat-icon>
-          <span>Enviado por: {{ note.user?.username }}</span>
+          <span>Enviado por: {{ note.user.username }}</span>
         </footer>
 
         <mat-card-actions class="note-actions">
