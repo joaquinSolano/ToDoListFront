@@ -11,7 +11,8 @@ import { NotesService } from '../../../services/notes.service';
 import { UsersService } from '../../../services/users.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatCard } from '@angular/material/card';
+import { MatCard, MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-notespage-registrar',
@@ -23,8 +24,10 @@ import { MatCard } from '@angular/material/card';
     MatSelectModule,
     MatButtonModule,
     NgIf,
-    MatCard
-  ],
+    MatCard,
+    MatCardTitle,
+    MatIcon
+],
   templateUrl: './notespage-registrar.component.html',
   styleUrls: ['./notespage-registrar.component.css'] // Corregido: Cambiado a styleUrls
 })

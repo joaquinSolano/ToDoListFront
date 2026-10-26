@@ -1,33 +1,29 @@
-<body>
-  <!-- Contenedor principal -->
-  <div class="outer-container">
-    <!-- Contenedor de los widgets -->
-    <div class="widget-container">
-      <!-- Repetición dinámica de widgets -->
-      <div *ngFor="let note of notes" class="note-widget">
-        <mat-card>
-          <mat-card-header>
-            <!-- Descripción del widget -->
-            <mat-card-title>{{ note.description }}</mat-card-title>
-            
-            <footer *ngIf="note.user?.username !== username">
-              nota creada por: {{ note.user?.username }}
-            </footer>
-            
+<div class="outer-container">
+  <div class="widget-container">
+    <div *ngFor="let note of notes" class="note-widget">
+      <mat-card class="note-card">
+        <mat-card-content class="note-body">
+          <p class="note-description">{{ note.description }}</p>
+        </mat-card-content>
 
-            <!-- Botón eliminar -->
-            <button mat-button color="warn" (click)="delete(note.id)">
-              <mat-icon class="buttondelete">delete</mat-icon>
-            </button>
+        <footer *ngIf="note.user?.username !== username" class="note-author">
+          <mat-icon>person</mat-icon>
+          <span>Nota creada por: {{ note.user?.username }}</span>
+        </footer>
 
-            <!-- Botón editar -->
-            <button mat-button [routerLink]="['ediciones', note.id]">
-              <mat-icon class="buttonedit">edit</mat-icon>
-            </button>
-          </mat-card-header>
-          <mat-card-actions></mat-card-actions>
-        </mat-card>
-      </div>
+        <mat-card-actions class="note-actions">
+          <button mat-icon-button class="buttonedit"
+                  [routerLink]="['ediciones', note.id]"
+                  aria-label="Editar nota">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="buttondelete"
+                  (click)="delete(note.id)"
+                  aria-label="Eliminar nota">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
-</body>
+</div>

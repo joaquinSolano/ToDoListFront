@@ -1,63 +1,78 @@
-/* Contenedor principal */
 .outer-container {
   display: flex;
   justify-content: center;
-  margin: 20px;
+  margin: 24px 16px;
 }
 
-/* Contenedor de los widgets */
+/* Cuadrícula responsiva: se adapta al ancho de la pantalla */
 .widget-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
 }
 
-/* Estilo individual de cada widget */
 .note-widget {
-  max-width: 400px;
+  display: flex;
 }
 
-/* Estilo de las tarjetas */
-mat-card {
+.note-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 160px;
   background-color: #FFFBCC;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  margin: 10px;
-  
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Contenido dentro de las tarjetas */
-.card-content {
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* El cuerpo ocupa el espacio libre y empuja las acciones abajo */
+.note-body {
+  flex: 1;
+  padding: 20px 20px 8px;
+}
+
+.note-description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  white-space: pre-wrap;   /* respeta los saltos de línea */
+  word-break: break-word;  /* evita que textos largos rompan la tarjeta */
+}
+
+.note-author {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-/* Estilo del botón eliminar */
-.delete-button {
-  margin-left: auto;
-}
-
-/* Estilo general de botones */
-button {
-  border: none; /* Sin bordes */
-  box-shadow: none; /* Sin sombra */
-  outline: none; /* Sin contorno */
-  background: none; /* Sin fondo */
-  padding: 0; /* Sin espacio extra */
-}
-.buttondelete{
-  color: #FF4D4D;
-}
-.buttonedit{
-  color: #4CAF50
-}
-footer {
+  gap: 6px;
+  padding: 0 20px 8px;
   font-size: 13px;
-  bottom: 0;
-  margin-top: auto; /* Empuja el footer al final del contenedor */
-  padding: 20px; /* Espaciado interno */
-  text-align: center; /* Opcional: alineación del texto */
-  position: absolute;
+  color: #6b6b4a;
 }
+
+.note-author mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 4px 12px 12px;
+}
+
+.note-actions button:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.buttonedit   { color: #4CAF50; }
+.buttondelete { color: #FF4D4D; }

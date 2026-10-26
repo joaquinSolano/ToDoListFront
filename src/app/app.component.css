@@ -1,70 +1,109 @@
-.mat-toolbar {
-    background-color: #2864cc;
-    color: white;
-    height: 60px;
-    display: flex;
-    width: 100%;
-  }
-  
-  .special-buttons { 
-    background-color: inherit;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 0; /* Remove default margins */
-  }
-    .custom-menu-item {   
-      color: white; 
-      &:hover {
-        color: white; 
-      }
-    }
-    .left-menu {
-      display: flex; /* Permite alinear los botones horizontalmente */
-    }
-    
-    .right-menu {
-      margin-left: auto; /* Empuja el menú de usuarios a la derecha */
-    }
-    footer {
-      background-color: #333;
-      position: absolute; /* Or relative if you want margins relative to content */
-      bottom: 0; /* Place it at the bottom */
-      width: 100%; /* Ensure it spans the full width */
-      z-index: 10; /* Set a higher z-index if needed */
-    }
-  
-  .footer-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-  }
-  
-  .footer-links a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      transition: color 0.3s;
-  }
-  
-  .footer-links a:hover {
-      color: #0080fe;
-  }
-  
-  .footer-social a {
-      margin: 0 10px;
-  }
-  
-  .footer-social img {
-      width: 30px;
-      transition: transform 0.3s;
-  }
-  
-  .footer-social img:hover {
-      transform: scale(1.1);
-  }
-  .copyrights {
-    text-align: center; /* Center the text horizontally */
-  }
-  
+.custom-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 0 16px;
+  background-color: #2864cc;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Botones de la barra */
+.nav-btn {
+  color: white;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 40px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn mat-icon {
+  margin-right: 6px;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Página actual resaltada */
+.nav-btn.active {
+  background-color: rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 -3px 0 #0080fe;
+}
+
+.user-btn .arrow {
+  margin: 0 -4px 0 2px;
+}
+
+.role-item {
+  opacity: 0.8;
+}
+
+/* En pantallas pequeñas solo se muestran los iconos */
+@media (max-width: 600px) {
+  .custom-toolbar { padding: 0 8px; }
+  .nav-btn span:not(.arrow) { display: none; }
+  .nav-btn mat-icon { margin-right: 0; }
+  .nav-btn { padding: 0 10px; min-width: 40px; }
+}
+
+/* ---------- Footer ---------- */
+footer {
+  width: 100%;
+  background-color: #333;
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 24px;
+}
+
+.footer-links a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #0080fe;
+}
+
+.footer-social a {
+  margin: 0 10px;
+}
+
+.footer-social img {
+  width: 30px;
+  transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+  transform: scale(1.1);
+}
+
+.copyrights {
+  text-align: center;
+  padding: 8px 0 12px;
+  font-size: 13px;
+  opacity: 0.8;
+}
