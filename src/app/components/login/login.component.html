@@ -1,27 +1,24 @@
-<body>
+<div class="auth-page">
   <!-- Login floating box -->
   <div class="float-box">
     <h2>Iniciar sesión</h2>
 
     <!-- Username field -->
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Usuario</mat-label>
       <input matInput placeholder="Username" [(ngModel)]="username" />
     </mat-form-field>
 
-    <br />
-
     <!-- Password field -->
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline" class="full-width">
       <mat-label>Password</mat-label>
-      <input type="password" matInput placeholder="Password" [(ngModel)]="password" />
+      <input type="password" matInput placeholder="Password" [(ngModel)]="password" (keyup.enter)="login()" />
     </mat-form-field>
 
-    <br />
-
-    <!-- Login button -->
-    <button (click)="login()" mat-flat-button color="primary">Ingresar</button>
-    <br/>
-    <button [routerLink]="['/newuser']" mat-flat-button color="primary">Crear usuario</button>
+    <!-- Botones -->
+    <div class="actions">
+      <button (click)="login()" mat-flat-button color="primary" class="action-btn">Ingresar</button>
+      <button [routerLink]="['/newuser']" mat-stroked-button color="primary" class="action-btn">Crear usuario</button>
+    </div>
   </div>
-</body>
+</div>

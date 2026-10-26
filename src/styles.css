@@ -9,3 +9,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* Responsive: el padding no suma al ancho y nada genera scroll horizontal */
+*, *::before, *::after { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img { max-width: 100%; height: auto; }

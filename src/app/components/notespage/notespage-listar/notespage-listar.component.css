@@ -76,3 +76,10 @@
 
 .buttonedit   { color: #4CAF50; }
 .buttondelete { color: #FF4D4D; }
+
+/* Celular: una columna y menos margen */
+@media (max-width: 480px) {
+  .outer-container { margin: 16px 12px; }
+  .widget-container { grid-template-columns: 1fr; gap: 14px; }
+  .note-card:hover { transform: none; }
+}
