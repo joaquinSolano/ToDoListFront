@@ -62,7 +62,7 @@ export class NotespageRegistrarComponent implements OnInit {
     });
     this.form = this.formBuilder.group({
       Id: [''],
-      Description: ['', [Validators.required, Validators.minLength(3),, Validators.maxLength(20)]],
+      Description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       Userid: ['', [Validators.required]]
     });
     this.usersService.list().subscribe((data) => {
