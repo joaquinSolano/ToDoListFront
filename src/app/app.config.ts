@@ -5,8 +5,9 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { getItem } from './utils/storage';
 export function tokenGetter() {
-  return sessionStorage.getItem('token');
+  return getItem('token');
 }
 export const appConfig: ApplicationConfig = {
   providers: [

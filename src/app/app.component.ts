@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { clearStorage, getItem } from './utils/storage';
 
 @Component({
   selector: 'app-root',
@@ -29,10 +30,10 @@ export class AppComponent {
   constructor(private loginService: LoginService) {}
   cerrar() {
     this.username=""
-    sessionStorage.clear();
+    clearStorage();
   }
   verificar() {
-    this.username = sessionStorage.getItem('username') || ''; // Recuperar el nombre de usuario
+    this.username = getItem('username') || ''; // Recuperar el nombre de usuario
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }

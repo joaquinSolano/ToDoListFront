@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login.service';
 import { Router, RouterLink } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JwtRequest } from '../../models/jwtRequest';
+import { setItem } from '../../utils/storage';
 
 @Component({
   selector: 'app-login',
@@ -36,10 +37,9 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(request).subscribe(
       (data: any) => {
-        sessionStorage.setItem('token', data.jwttoken);
-        console.log('Token:', data.jwttoken);
-        sessionStorage.setItem('username', this.username);
-        sessionStorage.setItem('role', this.role);
+        setItem('token', data.jwttoken);
+        setItem('username', this.username);
+        setItem('role', this.role);
         this.router.navigate(['notes']);
       },
       (error) => {

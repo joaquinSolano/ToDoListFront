@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { getItem } from '../../../utils/storage';
 
 @Component({
   selector: 'app-notespage-listar',
@@ -27,12 +28,12 @@ export class NotespageListarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || '';
+    this.username = getItem('username') || '';
     this.FilterRol(); // Esto cubre tanto la lista inicial como el filtrado por rol
   }
   
   private FilterRol(): void {
-    this.username = sessionStorage.getItem('username') || '';
+    this.username = getItem('username') || '';
     this.role = this.loginService.showRole();
     // Asegúrate de que la lista solo se actualice cuando los datos estén completamente cargados
     this.filterrolList()
