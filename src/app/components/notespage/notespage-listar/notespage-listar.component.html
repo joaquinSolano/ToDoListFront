@@ -6,9 +6,9 @@
           <p class="note-description">{{ note.description }}</p>
         </mat-card-content>
 
-        <footer *ngIf="note.user?.username !== username" class="note-author">
-          <mat-icon>person</mat-icon>
-          <span>Nota creada por: {{ note.user?.username }}</span>
+        <footer *ngIf="note.sender?.username && note.sender?.username !== username" class="note-author">
+          <mat-icon>send</mat-icon>
+          <span>Enviado por: {{ note.sender?.username }}</span>
         </footer>
 
         <mat-card-actions class="note-actions">
