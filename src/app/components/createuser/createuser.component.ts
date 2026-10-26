@@ -54,9 +54,6 @@ export class CreateuserComponent implements OnInit {
       Username: ['', [Validators.required]],
       Password: ['', [Validators.required]],
     });
-    this.usersService.list().subscribe((data) => {
-      this.listausers = data;
-    });
   }
   insertar(): void {
     if (this.form.valid) {
@@ -64,15 +61,16 @@ export class CreateuserComponent implements OnInit {
       this.users.username = this.form.value.Username;
       this.users.password = this.form.value.Password;
 
-      this.usersService.insert(this.users).subscribe((data) => {
-        this.usersService.list().subscribe((data) => {
-          this.usersService.setList(data);
-        });
+      // POST /users es publico: no necesita token
+      this.usersService.insert(this.users).subscribe({
+        next: () => {
+          this.snackBar.open('Se registro de manera exitosa', 'Cerrar', { duration: 3000 });
+          this.router.navigate(['login']);
+        },
+        error: () => {
+          this.snackBar.open('No se pudo registrar el usuario', 'Cerrar', { duration: 3000 });
+        },
       });
     }
-    this.router.navigate(['login']);
-    this.snackBar.open('Se registro de manera exitosa', 'Cerrar', {
-      duration: 3000,
-    });
   }
 }
