@@ -63,6 +63,13 @@ export class NotespageListarComponent implements OnInit {
     );
 
   }
+  // Muestra "Enviado por" solo si la nota es de otro usuario
+  // (compara sin importar mayusculas ni espacios)
+  esDeOtroUsuario(note: Notes): boolean {
+    const autor = (note.user?.username || '').trim().toLowerCase();
+    const yo = (this.username || '').trim().toLowerCase();
+    return autor !== '' && autor !== yo;
+  }
   private filterrolList():void{
     this.notesService.list().subscribe(data => {
       switch (this.role) {
