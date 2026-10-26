@@ -1,42 +1,57 @@
-<body>
-<br/>
-  <div class="title-container">
-    <div class="container" style="text-align: center">
-      <!-- Formulario con grupo de controles -->
-       <mat-card>
-      <form [formGroup]="form" (submit)="insertar()">
+<div class="form-wrapper">
+  <mat-card class="form-card">
 
-        <!-- Campo de descripción -->
-        <mat-form-field class="descripcion">
-          <mat-label>Descripción</mat-label>
-          <input matInput placeholder="Descripción" formControlName="Description">
-          <mat-error *ngIf="form.get('Description')?.hasError('required')">
-            Campo obligatorio
-          </mat-error>
-          <mat-error *ngIf="form.get('Description')?.hasError('minlength')">
-            Ingresa al menos 3 caracteres en la descripción
-          </mat-error>
-          <mat-error *ngIf="form.get('Description')?.hasError('maxlength')">
-            Solo ingresar 20 caracteres
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Selector de usuario -->
-        <mat-form-field class="user">
-          <mat-label>Usuario</mat-label>
-          <mat-select formControlName="Userid">
-            @for (user of listausers; track user) {
-            <mat-option [value]="user.id">{{ user.username }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Botón de registrar -->
-        <button mat-flat-button color="primary" style="text-align: center;">
-          Registrar
-        </button>
-      </form>
-      </mat-card>
+    <!-- Encabezado -->
+    <div class="form-header">
+      <div class="header-icon">
+        <mat-icon>{{ edicion ? 'edit_note' : 'note_add' }}</mat-icon>
+      </div>
+      <div>
+        <h2 class="form-title">{{ edicion ? 'Editar tarea' : 'Nueva tarea' }}</h2>
+        <p class="form-subtitle">Escribe la tarea y elige a quién se la asignas</p>
+      </div>
     </div>
-  </div>
-</body>
+
+    <!-- Formulario con grupo de controles -->
+    <form [formGroup]="form" (submit)="insertar()" class="task-form">
+
+      <!-- Campo de descripción -->
+      <mat-form-field appearance="outline" class="descripcion">
+        <mat-label>Descripción</mat-label>
+        <mat-icon matPrefix class="field-icon">description</mat-icon>
+        <input matInput placeholder="Ej. Revisar informe" formControlName="Description" maxlength="20">
+        <mat-hint align="end">{{ form.get('Description')?.value?.length || 0 }}/20</mat-hint>
+        <mat-error *ngIf="form.get('Description')?.hasError('required')">
+          Campo obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('Description')?.hasError('minlength')">
+          Ingresa al menos 3 caracteres en la descripción
+        </mat-error>
+        <mat-error *ngIf="form.get('Description')?.hasError('maxlength')">
+          Solo ingresar 20 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Selector de usuario -->
+      <mat-form-field appearance="outline" class="user">
+        <mat-label>Usuario</mat-label>
+        <mat-icon matPrefix class="field-icon">person</mat-icon>
+        <mat-select formControlName="Userid">
+          @for (user of listausers; track user.id) {
+            <mat-option [value]="user.id">{{ user.username }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('Userid')?.hasError('required')">
+          Selecciona un usuario
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Botón de registrar -->
+      <button mat-flat-button color="primary" type="submit" class="submit-btn">
+        <mat-icon>{{ edicion ? 'save' : 'add' }}</mat-icon>
+        {{ edicion ? 'Guardar' : 'Registrar' }}
+      </button>
+    </form>
+
+  </mat-card>
+</div>

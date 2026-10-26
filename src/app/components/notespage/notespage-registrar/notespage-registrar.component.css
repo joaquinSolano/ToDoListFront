@@ -4,21 +4,47 @@
   padding: 32px 16px;
 }
 
+/* Misma tarjeta amarilla que las notas */
 .form-card {
   width: 100%;
   max-width: 760px;
-  padding: 24px;
-  background-color: #FFFBCC;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 24px 28px 20px;
+  background-color: #FFFBCC !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Encabezado: icono + título */
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #2866CC;
+  color: #fff;
+  flex-shrink: 0;
 }
 
 .form-title {
-  margin-bottom: 20px;
+  margin: 0;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
   color: #333;
-  text-align: center;
+}
+
+.form-subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #6b6b4a;
 }
 
 /* Campos y botón en una fila; se apilan solos en pantallas pequeñas */
@@ -37,10 +63,22 @@
   flex: 1 1 180px;
 }
 
+.field-icon {
+  margin: 0 8px 0 12px;
+  color: #8a8a6a;
+}
+
+/* Fondo blanco en los campos para que resalten sobre el amarillo */
+:host ::ng-deep .form-card .mat-mdc-text-field-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
 .submit-btn {
   height: 56px;           /* misma altura que los campos */
   padding: 0 24px;
-  border-radius: 8px;
+  border-radius: 8px !important;
+  font-weight: 600;
 }
 
 .submit-btn mat-icon {
